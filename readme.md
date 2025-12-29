@@ -50,7 +50,7 @@ For an overview of Build Club’s mission, structure, and educational philosophy
 **Christopher Lin**  
 Personal website: https://christopherlin.ca/
 
-- Completed Harvard University [CS50x](https://cs50.harvard.edu/x/) (2022) and [CS50AI](https://cs50.harvard.edu/ai/) (2024)
+- Completed Harvard University [**CS50x** (2022)](https://cs50.harvard.edu/x/) Harvard University [**CS50web** (2022)](https://cs50.harvard.edu/web/)  and [**CS50AI** (2024)](https://cs50.harvard.edu/ai/)
 - Selected to attend University of Waterloo – Hack the North (2024)
 - GVRSF Gold Medalist (2024, 2025)
 - Canada‑Wide Science Fair (CWSF) Bronze Medalist (2025)
