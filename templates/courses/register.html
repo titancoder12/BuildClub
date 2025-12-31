@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register | {{ course.title }}{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-5xl px-6 py-16">
+    <div class="mb-10">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Registration</p>
+      <h1 class="mt-3 text-3xl font-semibold text-slate-900">{{ course.title }}</h1>
+      <p class="mt-3 text-base text-slate-600">
+        Weekly lunch-time sessions with short instruction and hands-on building.
+      </p>
+    </div>
+
+    {% if is_full %}
+      <div class="rounded-3xl border border-amber-200 bg-amber-50 p-8 text-slate-700">
+        <h2 class="text-xl font-semibold text-slate-900">Course full</h2>
+        <p class="mt-3 text-sm text-slate-600">
+          This course is currently full. Please check back for future openings.
+        </p>
+      </div>
+    {% else %}
+      <form method="post" class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="mb-6 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-600">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label for="{{ form.student_first_name.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Student first name
+            </label>
+            {{ form.student_first_name }}
+            {{ form.student_first_name.errors }}
+          </div>
+          <div>
+            <label for="{{ form.student_last_name.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Student last name
+            </label>
+            {{ form.student_last_name }}
+            {{ form.student_last_name.errors }}
+          </div>
+          <div>
+            <label for="{{ form.student_grade.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Student grade
+            </label>
+            {{ form.student_grade }}
+            {{ form.student_grade.errors }}
+          </div>
+          <div>
+            <label for="{{ form.guardian_name.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Parent/guardian name
+            </label>
+            {{ form.guardian_name }}
+            {{ form.guardian_name.errors }}
+          </div>
+          <div>
+            <label for="{{ form.guardian_email.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Parent/guardian email
+            </label>
+            {{ form.guardian_email }}
+            {{ form.guardian_email.errors }}
+          </div>
+          <div class="md:col-span-2">
+            <label for="{{ form.notes.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              Notes (optional)
+            </label>
+            {{ form.notes }}
+            {{ form.notes.errors }}
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3">
+          {{ form.consent }}
+          <div>
+            <label for="{{ form.consent.id_for_label }}" class="text-sm font-semibold text-slate-700">
+              I consent to participation and understand Build Club is a student-led program.
+            </label>
+            {{ form.consent.errors }}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="mt-8 inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-teal-500/30 transition hover:bg-teal-400"
+        >
+          Submit registration
+        </button>
+      </form>
+    {% endif %}
+  </section>
+{% endblock %}

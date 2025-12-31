@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Courses | Build Club{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-6xl px-6 py-16">
+    <div class="flex items-end justify-between gap-6">
+      <div>
+        <h1 class="text-3xl font-semibold text-slate-900">Courses</h1>
+        <p class="mt-3 max-w-2xl text-base text-slate-600">
+          Build Club courses guide students through building real projects from the
+          ground up, with hands-on learning and systems thinking.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      {% for course in courses %}
+        <article class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+          <a href="{% url 'course_detail' course.slug %}" class="block">
+            <div class="h-56 w-full overflow-hidden">
+              <img
+                src="{% static course.image_path %}"
+                alt="{{ course.title }}"
+                class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h2 class="text-xl font-semibold text-slate-900">{{ course.title }}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">
+                {{ course.short_description }}
+              </p>
+              <div class="mt-5 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <span class="rounded-full bg-slate-100 px-3 py-1">{{ course.location }}</span>
+                <span class="rounded-full bg-slate-100 px-3 py-1">
+                  {{ course.day_of_week }} · {{ course.start_time|time:"g:i A" }}
+                </span>
+                {% if course.spots_remaining is not None %}
+                  <span class="rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">
+                    {{ course.spots_remaining }} seats left
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        </article>
+      {% empty %}
+        <div class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-10 text-center text-slate-500">
+          Courses will be published soon. Please check back.
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

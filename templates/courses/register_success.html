@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Registration submitted | Build Club{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-4xl px-6 py-20 text-center">
+    <div class="rounded-3xl border border-emerald-200 bg-emerald-50 px-10 py-12 text-slate-700 shadow-sm">
+      <h1 class="text-3xl font-semibold text-slate-900">Registration received</h1>
+      <p class="mt-4 text-base text-slate-600">
+        Build Club provides a collaborative and supportive environment for hands-on learning.
+      </p>
+      <a
+        href="{% url 'courses_list' %}"
+        class="mt-8 inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-teal-500/30 transition hover:bg-teal-400"
+      >
+        Back to courses
+      </a>
+    </div>
+  </section>
+{% endblock %}

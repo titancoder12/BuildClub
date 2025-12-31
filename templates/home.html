@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Build Club{% endblock %}
+
+{% block content %}
+  <section class="relative">
+    <div class="relative h-[70vh] min-h-[420px] w-full">
+      <img
+        src="{% static 'images/hero/buildclub-hero.png' %}"
+        alt="Build Club students building technology"
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-slate-900/60"></div>
+      <div class="absolute inset-0 flex items-center">
+        <div class="mx-auto w-full max-w-6xl px-6">
+          <div class="max-w-2xl text-white">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-teal-200">
+              Student-led STEM enrichment
+            </p>
+            <h1 class="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
+              Build technology from the ground up.
+            </h1>
+            <p class="mt-5 text-lg text-slate-200">
+              Build Club teaches students how real systems work by building
+              software, hardware, and complete projects step by step.
+            </p>
+            <div class="mt-8">
+              <a
+                href="{% url 'courses_list' %}"
+                class="inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-teal-500/30 transition hover:bg-teal-400"
+              >
+                View Courses
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-6xl px-6 py-16">
+    <div class="grid gap-8 md:grid-cols-3">
+      {% for highlight in highlights %}
+        <div class="rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900">{{ highlight.title }}</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">{{ highlight.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-20 md:flex-row md:items-center">
+    <div class="md:w-1/2">
+      <h2 class="text-3xl font-semibold text-slate-900">
+        Hands-on learning with software and hardware.
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-slate-600">
+        Build Club emphasizes hands-on construction, problem-solving, and
+        systems thinking. Students work with microcontrollers, processors, and
+        physical components while building real web applications and projects.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-slate-600">
+        The program prioritizes understanding how things work before relying on
+        automation tools.
+      </p>
+    </div>
+    <div class="md:w-1/2">
+      <div class="overflow-hidden rounded-3xl shadow-lg">
+        <img
+          src="{% static 'images/hardware/hands-on-electronics.png' %}"
+          alt="Hands-on electronics and hardware learning"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+{% endblock %}
