@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}About | Build Club{% endblock %}
+
+{% block content %}
+<section class="mx-auto w-full max-w-5xl px-6 py-16">
+  <div class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm font-semibold uppercase tracking-wide text-teal-700">About</p>
+      <h1 class="text-3xl font-semibold text-slate-900 md:text-4xl">Build Club builds confident makers.</h1>
+      <p class="max-w-3xl text-lg text-slate-600">
+        Build Club is a student-led, volunteer-run educational initiative. It is not currently a registered charitable
+        organization. All activities are non-commercial.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">Mission</h2>
+        <p class="text-base text-slate-600">
+          We help students discover how technology works by building real circuits, writing beginner-friendly code, and
+          working on projects they can show at school and at home.
+        </p>
+      </div>
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">What we teach</h2>
+        <p class="text-base text-slate-600">
+          Sessions cover low-voltage electronics, microcontrollers, and the fundamentals of programming with a focus on
+          curiosity, safe experimentation, and teamwork.
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-xl font-semibold text-slate-900">How sessions run</h2>
+      <p class="text-base text-slate-600">
+        Each session combines a short lesson with hands-on build time. Volunteers guide students through step-by-step
+        activities, and participants work in small groups to test ideas and document results.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6">
+      <h2 class="text-xl font-semibold text-slate-900">Impact</h2>
+      <p class="mt-2 text-base text-slate-600">We are tracking outcomes and will publish verified numbers soon.</p>
+      <ul class="mt-4 space-y-2 text-base text-slate-600">
+        <li>Students taught: [to be published]</li>
+        <li>Volunteer hours: [to be published]</li>
+        <li>Student projects completed: [to be published]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}

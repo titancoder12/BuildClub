@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy & Media Consent | Build Club{% endblock %}
+
+{% block content %}
+<section class="mx-auto w-full max-w-5xl px-6 py-16">
+  <div class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm font-semibold uppercase tracking-wide text-teal-700">Privacy & Media Consent</p>
+      <h1 class="text-3xl font-semibold text-slate-900 md:text-4xl">Respecting student privacy.</h1>
+      <p class="max-w-3xl text-lg text-slate-600">
+        We collect only the information needed to run sessions and communicate with families.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">Data collection</h2>
+        <p class="text-base text-slate-600">
+          We collect minimal information such as student name, grade, and a parent or guardian contact so we can
+          coordinate sessions and safety updates.
+        </p>
+        <p class="text-base text-slate-600">We do not sell or share personal information.</p>
+      </div>
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">Media consent</h2>
+        <p class="text-base text-slate-600">
+          We do not publish student names or photos publicly without parent or guardian consent.
+        </p>
+        <p class="text-base text-slate-600">
+          Families can opt out of photos or videos at any time by contacting us.
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-xl font-semibold text-slate-900">Student work ownership</h2>
+      <p class="text-base text-slate-600">
+        Students own the projects they create and keep credit for their ideas, designs, and write-ups.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

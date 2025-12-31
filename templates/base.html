@@ -50,6 +50,9 @@
           <div class="flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-slate-600">
             <a href="{% url 'home' %}" class="transition hover:text-slate-900">Home</a>
             <a href="{% url 'courses_list' %}" class="transition hover:text-slate-900">Courses</a>
+            <a href="{% url 'pages:about' %}" class="transition hover:text-slate-900">About</a>
+            <a href="{% url 'pages:get_involved' %}" class="transition hover:text-slate-900">Get Involved</a>
+            <a href="{% url 'pages:contact' %}" class="transition hover:text-slate-900">Contact</a>
           </div>
         </nav>
       </header>
@@ -59,9 +62,32 @@
       </main>
 
       <footer class="relative z-10 mt-16 border-t border-slate-200">
-        <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-8 text-sm text-slate-500">
-          <span>Build Club — student-led STEM enrichment</span>
-          <span>Build technology from the ground up</span>
+        <div class="mx-auto w-full max-w-6xl px-6 py-10 text-sm text-slate-600">
+          <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div class="space-y-3">
+              <p class="text-base font-semibold text-slate-700">Build Club — student-led STEM enrichment</p>
+              <p class="max-w-lg text-slate-600">
+                Build Club is a student-led, volunteer-run educational initiative. It is not currently a registered
+                charitable organization. All activities are non-commercial.
+              </p>
+              <div class="space-y-1">
+                <p>
+                  <a href="mailto:buildclub.org@gmail.com" class="font-semibold text-slate-700 hover:text-slate-900"
+                    >buildclub.org@gmail.com</a
+                  >
+                </p>
+                <p>5788 Sidley St. Burnaby BC V5J0E4</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-x-4 gap-y-2 font-semibold text-slate-600 md:justify-end">
+              <a href="{% url 'pages:about' %}" class="transition hover:text-slate-900">About</a>
+              <a href="{% url 'pages:safety' %}" class="transition hover:text-slate-900">Safety</a>
+              <a href="{% url 'pages:privacy' %}" class="transition hover:text-slate-900">Privacy</a>
+              <a href="{% url 'pages:conduct' %}" class="transition hover:text-slate-900">Code of Conduct</a>
+              <a href="{% url 'pages:governance' %}" class="transition hover:text-slate-900">Governance</a>
+              <a href="{% url 'pages:contact' %}" class="transition hover:text-slate-900">Contact</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

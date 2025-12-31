@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Safety & Supervision | Build Club{% endblock %}
+
+{% block content %}
+<section class="mx-auto w-full max-w-5xl px-6 py-16">
+  <div class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm font-semibold uppercase tracking-wide text-teal-700">Safety & Supervision</p>
+      <h1 class="text-3xl font-semibold text-slate-900 md:text-4xl">Safe, low-risk, and student-friendly.</h1>
+      <p class="max-w-3xl text-lg text-slate-600">
+        Build Club activities are designed for beginners and focus on safe, low-voltage experimentation.
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6">
+      <ul class="space-y-3 text-base text-slate-600">
+        <li>Low-voltage only (5V) projects for all student activities.</li>
+        <li>No soldering initially; students start with breadboards and modular components.</li>
+        <li>Adult supervision is present during in-person sessions.</li>
+        <li>Clear tool rules: keep parts organized, handle components gently, and ask before troubleshooting.</li>
+      </ul>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-xl font-semibold text-slate-900">Safety questions</h2>
+      <p class="text-base text-slate-600">
+        Families can request additional safety details or supervision plans by emailing
+        <a href="mailto:buildclub.org@gmail.com" class="font-semibold text-teal-700 hover:text-teal-800"
+          >buildclub.org@gmail.com</a
+        >.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

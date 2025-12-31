@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Governance | Build Club{% endblock %}
+
+{% block content %}
+<section class="mx-auto w-full max-w-5xl px-6 py-16">
+  <div class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm font-semibold uppercase tracking-wide text-teal-700">Governance & Oversight</p>
+      <h1 class="text-3xl font-semibold text-slate-900 md:text-4xl">How Build Club is led.</h1>
+      <p class="max-w-3xl text-lg text-slate-600">
+        Build Club is organized and delivered by volunteers who prioritize student safety, learning outcomes, and
+        transparency with families and school partners.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">Leadership</h2>
+        <p class="text-base text-slate-600">Founder & Lead Instructor: Christopher Lin</p>
+        <p class="text-base text-slate-600">
+          Volunteers support lesson delivery, student support, and classroom logistics.
+        </p>
+      </div>
+      <div class="space-y-3">
+        <h2 class="text-xl font-semibold text-slate-900">Adult supervision</h2>
+        <p class="text-base text-slate-600">
+          Adult supervision is present during in-person sessions. Details available upon request.
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-xl font-semibold text-slate-900">Reporting concerns</h2>
+      <p class="text-base text-slate-600">
+        Families and partners can report concerns or ask questions at any time via
+        <a href="mailto:buildclub.org@gmail.com" class="font-semibold text-teal-700 hover:text-teal-800"
+          >buildclub.org@gmail.com</a
+        >.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

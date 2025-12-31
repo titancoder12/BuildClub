@@ -9,4 +9,5 @@ urlpatterns = [
     path("", course_views.home, name="home"),
     path("register/success/", course_views.register_success, name="register_success"),
     path("courses/", include("courses.urls")),
+    path("", include("pages.urls")),
 ]
