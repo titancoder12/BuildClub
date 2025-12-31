@@ -21,8 +21,10 @@ class Command(BaseCommand):
         content = syllabus_path.read_text(encoding="utf-8")
 
         title = _extract_title(content)
-        description = _extract_section(content, "Course Description")
+        description = _clean_markdown_noise(_extract_section(content, "Course Description"))
         what_youll_learn = _extract_bullets(content, "What Students Will Learn")
+        instructor_name = _extract_instructor_name(content)
+        instructor_bio = _build_instructor_bio(content)
 
         short_description = _first_sentence(description)
         long_description = description.strip()
@@ -41,6 +43,8 @@ class Command(BaseCommand):
                 "max_students": None,
                 "published": True,
                 "image_path": "images/courses/course-1-build-web-app.png",
+                "instructor_name": instructor_name,
+                "instructor_bio": instructor_bio,
             },
         )
 
@@ -76,3 +80,33 @@ def _first_sentence(text: str) -> str:
     if sentence and not sentence.endswith("."):
         sentence += "."
     return sentence
+
+
+def _clean_markdown_noise(text: str) -> str:
+    if not text:
+        return ""
+    cleaned_lines = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.strip("-").strip() == "":
+            continue
+        cleaned_lines.append(line)
+    return "\n".join(cleaned_lines).strip()
+
+
+def _extract_instructor_name(content: str) -> str:
+    match = re.search(r"## Instructor\s+\*\*(.+?)\*\*", content, re.S)
+    if match:
+        return match.group(1).strip()
+    return ""
+
+
+def _build_instructor_bio(content: str) -> str:
+    role = _extract_section(content, "Instructor Role (Volunteer)")
+    credentials = _extract_section(content, "Instructor Credentials")
+    parts = []
+    if role:
+        parts.append(role.strip())
+    if credentials:
+        parts.append(credentials.strip())
+    return "\n\n".join(parts)

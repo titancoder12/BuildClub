@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 
 
@@ -23,6 +25,8 @@ class Course(models.Model):
     max_students = models.PositiveIntegerField(null=True, blank=True)
     published = models.BooleanField(default=False)
     image_path = models.CharField(max_length=255)
+    instructor_name = models.CharField(max_length=200, default="", blank=True)
+    instructor_bio = models.TextField(default="", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -50,6 +54,53 @@ class Course(models.Model):
 
     def what_youll_learn_list(self) -> list[str]:
         return [item.strip() for item in self.what_youll_learn.splitlines() if item.strip()]
+
+    def instructor_profile(self) -> dict[str, object]:
+        if not (self.instructor_bio or self.instructor_name):
+            return {}
+
+        name = self.instructor_name.strip()
+        role_intro = ""
+        role_items: list[str] = []
+        role_notes: list[str] = []
+        credential_items: list[str] = []
+
+        lines = [line.strip() for line in self.instructor_bio.splitlines()]
+        section = "role"
+        for line in lines:
+            if not line:
+                continue
+            cleaned = _clean_instructor_line(line)
+            if not cleaned or cleaned.strip("-").strip() == "":
+                continue
+            if cleaned.endswith("serves as:"):
+                role_intro = cleaned
+                section = "role"
+                continue
+            if cleaned == "Christopher Lin":
+                if not name:
+                    name = cleaned
+                section = "credentials"
+                continue
+            if cleaned.startswith("- "):
+                item = cleaned[2:].strip()
+                if section == "role":
+                    role_items.append(item)
+                else:
+                    credential_items.append(item)
+                continue
+            if section == "role":
+                role_notes.append(cleaned)
+            else:
+                credential_items.append(cleaned)
+
+        return {
+            "name": name,
+            "role_intro": role_intro,
+            "role_items": role_items,
+            "role_notes": role_notes,
+            "credential_items": credential_items,
+        }
 
 
 class Registration(models.Model):
@@ -79,3 +130,9 @@ class Registration(models.Model):
 
     def __str__(self) -> str:
         return f"{self.student_first_name} {self.student_last_name} ({self.course})"
+
+
+def _clean_instructor_line(text: str) -> str:
+    cleaned = text.replace("**", "")
+    cleaned = re.sub(r"\[(.+?)\]\((https?://[^\s)]+)\)", r"\1 (\2)", cleaned)
+    return cleaned

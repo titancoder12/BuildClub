@@ -8,7 +8,14 @@ from .models import Course, Registration
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ("title", "published", "day_of_week", "start_time", "location")
+    list_display = (
+        "title",
+        "published",
+        "day_of_week",
+        "start_time",
+        "location",
+        "instructor_name",
+    )
     list_filter = ("published", "day_of_week")
     search_fields = ("title", "short_description", "long_description")
     prepopulated_fields = {"slug": ("title",)}
