@@ -65,19 +65,49 @@
                     <p class="text-sm font-semibold text-slate-700">{{ profile.role_intro }}</p>
                   {% endif %}
                   {% if profile.role_items %}
-                    <ul class="mt-4 space-y-2 text-sm text-slate-600">
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
                       {% for item in profile.role_items %}
                         <li class="flex items-start gap-3">
                           <span class="mt-2 h-2 w-2 rounded-full bg-teal-500"></span>
-                          <span>{{ item|urlize }}</span>
+                          <p>
+                            {% for part in item.parts %}
+                              {% if part.url %}
+                                <a
+                                  href="{{ part.url }}"
+                                  class="text-teal-600 underline hover:text-teal-500"
+                                  target="_blank"
+                                  rel="noopener"
+                                >
+                                  {{ part.text }}
+                                </a>
+                              {% else %}
+                                {{ part.text }}
+                              {% endif %}
+                            {% endfor %}
+                          </p>
                         </li>
                       {% endfor %}
                     </ul>
                   {% endif %}
                   {% if profile.role_notes %}
-                    <div class="mt-4 space-y-2 text-sm text-slate-600">
+                    <div class="mt-4 space-y-3 text-sm text-slate-600">
                       {% for note in profile.role_notes %}
-                        <p>{{ note|urlize }}</p>
+                        <p>
+                          {% for part in note.parts %}
+                            {% if part.url %}
+                              <a
+                                href="{{ part.url }}"
+                                class="text-teal-600 underline hover:text-teal-500"
+                                target="_blank"
+                                rel="noopener"
+                              >
+                                {{ part.text }}
+                              </a>
+                            {% else %}
+                              {{ part.text }}
+                            {% endif %}
+                          {% endfor %}
+                        </p>
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -85,11 +115,26 @@
                 <div>
                   <p class="text-sm font-semibold text-slate-700">Credentials</p>
                   {% if profile.credential_items %}
-                    <ul class="mt-4 space-y-2 text-sm text-slate-600">
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
                       {% for item in profile.credential_items %}
                         <li class="flex items-start gap-3">
                           <span class="mt-2 h-2 w-2 rounded-full bg-teal-500"></span>
-                          <span>{{ item|urlize }}</span>
+                          <p>
+                            {% for part in item.parts %}
+                              {% if part.url %}
+                                <a
+                                  href="{{ part.url }}"
+                                  class="text-teal-600 underline hover:text-teal-500"
+                                  target="_blank"
+                                  rel="noopener"
+                                >
+                                  {{ part.text }}
+                                </a>
+                              {% else %}
+                                {{ part.text }}
+                              {% endif %}
+                            {% endfor %}
+                          </p>
                         </li>
                       {% endfor %}
                     </ul>

@@ -61,9 +61,9 @@ class Course(models.Model):
 
         name = self.instructor_name.strip()
         role_intro = ""
-        role_items: list[str] = []
-        role_notes: list[str] = []
-        credential_items: list[str] = []
+        role_items: list[dict[str, object]] = []
+        role_notes: list[dict[str, object]] = []
+        credential_items: list[dict[str, object]] = []
 
         lines = [line.strip() for line in self.instructor_bio.splitlines()]
         section = "role"
@@ -83,16 +83,16 @@ class Course(models.Model):
                 section = "credentials"
                 continue
             if cleaned.startswith("- "):
-                item = cleaned[2:].strip()
+                item = _item_from_line(line[2:].strip())
                 if section == "role":
                     role_items.append(item)
                 else:
                     credential_items.append(item)
                 continue
             if section == "role":
-                role_notes.append(cleaned)
+                role_notes.append(_item_from_line(line))
             else:
-                credential_items.append(cleaned)
+                credential_items.append(_item_from_line(line))
 
         return {
             "name": name,
@@ -136,3 +136,47 @@ def _clean_instructor_line(text: str) -> str:
     cleaned = text.replace("**", "")
     cleaned = re.sub(r"\[(.+?)\]\((https?://[^\s)]+)\)", r"\1 (\2)", cleaned)
     return cleaned
+
+
+def _item_from_line(text: str) -> dict[str, object]:
+    parts = _split_text_and_links(text)
+    return {"parts": parts}
+
+
+def _split_text_and_links(text: str) -> list[dict[str, str | None]]:
+    raw = text.replace("**", "")
+    parts: list[dict[str, str | None]] = []
+    last_index = 0
+    for match in re.finditer(r"\[(.+?)\]\((https?://[^\s)]+)\)", raw):
+        start, end = match.span()
+        if start > last_index:
+            parts.append({"text": raw[last_index:start], "url": None})
+        link_text = match.group(1).strip()
+        link_url = match.group(2).strip()
+        parts.append({"text": link_text, "url": link_url})
+        last_index = end
+    if last_index < len(raw):
+        parts.append({"text": raw[last_index:], "url": None})
+
+    resolved_parts: list[dict[str, str | None]] = []
+    for part in parts:
+        if part["url"]:
+            resolved_parts.append(part)
+            continue
+        segment = part["text"] or ""
+        cursor = 0
+        for match in re.finditer(r"https?://[^\s)]+", segment):
+            start, end = match.span()
+            if start > cursor:
+                resolved_parts.append({"text": segment[cursor:start], "url": None})
+            url = match.group(0)
+            label = re.sub(r"^https?://", "", url).strip("/")
+            resolved_parts.append({"text": label, "url": url})
+            cursor = end
+        if cursor < len(segment):
+            resolved_parts.append({"text": segment[cursor:], "url": None})
+
+    for part in resolved_parts:
+        if part["text"]:
+            part["text"] = re.sub(r"\s+", " ", part["text"]).replace(" (", " (").strip()
+    return [part for part in resolved_parts if part.get("text")]
