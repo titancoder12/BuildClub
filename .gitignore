@@ -1,0 +1,45 @@
+.DS_Store
+BuildClub.code-workspace
+
+# Python/Django
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.env
+.env.*
+pip-log.txt
+pip-delete-this-directory.txt
+.python-version
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+
+# Test / coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
