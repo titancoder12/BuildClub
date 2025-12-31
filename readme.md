@@ -82,4 +82,4 @@ This repository contains curriculum and planning documents for Build Club. Cours
 
 Educational use only. All content is intended for non‑commercial, instructional purposes.
 
-
+.
