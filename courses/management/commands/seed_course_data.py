@@ -23,6 +23,7 @@ class Command(BaseCommand):
         title = _extract_title(content)
         description = _clean_markdown_noise(_extract_section(content, "Course Description"))
         what_youll_learn = _extract_bullets(content, "What Students Will Learn")
+        syllabus = _clean_syllabus_markdown(_extract_section(content, "Course Outline"))
         instructor_name = _extract_instructor_name(content)
         instructor_bio = _build_instructor_bio(content)
 
@@ -36,6 +37,7 @@ class Command(BaseCommand):
                 "short_description": short_description,
                 "long_description": long_description,
                 "what_youll_learn": "\n".join(what_youll_learn),
+                "syllabus": syllabus,
                 "location": "ICS — Thursday Homeschool Learning Group",
                 "day_of_week": Course.DayOfWeek.THURSDAY,
                 "start_time": time(12, 0),
@@ -91,6 +93,25 @@ def _clean_markdown_noise(text: str) -> str:
         if not stripped or stripped.strip("-").strip() == "":
             continue
         cleaned_lines.append(line)
+    return "\n".join(cleaned_lines).strip()
+
+
+def _clean_syllabus_markdown(text: str) -> str:
+    if not text:
+        return ""
+    cleaned_lines = []
+    previous_blank = False
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.strip("-").strip() == "":
+            if not previous_blank:
+                cleaned_lines.append("")
+                previous_blank = True
+            continue
+        normalized = re.sub(r"^#{2,6}\s+", "", stripped)
+        normalized = normalized.replace("**", "")
+        cleaned_lines.append(normalized)
+        previous_blank = False
     return "\n".join(cleaned_lines).strip()
 
 
