@@ -82,4 +82,5 @@ Additional site implementation notes: [BUILDCLUB_SITE.md](./BUILDCLUB_SITE.md)
 
 ## License
 
+
 Educational use only. All content is intended for non-commercial, instructional purposes.
