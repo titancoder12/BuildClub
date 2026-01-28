@@ -27,3 +27,7 @@ def get_involved(request):
 
 def contact(request):
     return render(request, "pages/contact.html")
+
+
+def year_1988(request):
+    return render(request, "pages/1988.html")

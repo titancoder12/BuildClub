@@ -6,6 +6,7 @@ from . import views
 app_name = "pages"
 
 urlpatterns = [
+    path("1988/", views.year_1988, name="year_1988"),
     path("about/", views.about, name="about"),
     path("governance/", views.governance, name="governance"),
     path("safety/", views.safety, name="safety"),
