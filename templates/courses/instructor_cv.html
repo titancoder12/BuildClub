@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} Instructor CV | Build Club{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-4xl px-6 py-16">
+    <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Instructor CV</p>
+          <h1 class="mt-2 text-3xl font-semibold text-slate-900">{{ course.instructor_name|default:"Instructor" }}</h1>
+          <p class="mt-2 text-sm text-slate-500">Course: {{ course.title }}</p>
+        </div>
+        <a
+          href="{% url 'course_detail' course.slug %}"
+          class="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+        >
+          Back to course
+        </a>
+      </div>
+
+      {% if cv_markdown %}
+        <div class="cv-markdown mt-8 text-sm leading-relaxed text-slate-600">
+          {{ cv_html|safe }}
+        </div>
+      {% else %}
+        <p class="mt-8 text-sm text-slate-500">This instructor has not shared a CV yet.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <style>
+    .cv-markdown h1,
+    .cv-markdown h2,
+    .cv-markdown h3 {
+      color: #0f172a;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .cv-markdown h1 { font-size: 1.5rem; }
+    .cv-markdown h2 { font-size: 1.25rem; }
+    .cv-markdown h3 { font-size: 1.1rem; }
+    .cv-markdown p { margin-bottom: 0.75rem; }
+    .cv-markdown ul,
+    .cv-markdown ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .cv-markdown li { margin-bottom: 0.4rem; }
+    .cv-markdown a {
+      color: #0f766e;
+      text-decoration: underline;
+    }
+    .cv-markdown code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.35rem;
+      font-size: 0.85em;
+    }
+    .cv-markdown pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+  </style>
+{% endblock %}
