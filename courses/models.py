@@ -30,6 +30,11 @@ class Course(models.Model):
     image_path = models.CharField(max_length=255)
     instructor_name = models.CharField(max_length=200, default="", blank=True)
     instructor_bio = models.TextField(default="", blank=True)
+    instructor_cv_markdown = models.TextField(
+        default="",
+        blank=True,
+        help_text="Paste the instructor CV in Markdown format.",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
